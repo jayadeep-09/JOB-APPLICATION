@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-b2stu$zg5dpw&0x$)mh2%kjca6&#s6-0xxj(5v8gcuprzk7pw2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -79,12 +79,8 @@ WSGI_APPLICATION = 'job.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'job application',
-        'USER': 'postgres',
-        'PASSWORD': 'Jayadeep',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
