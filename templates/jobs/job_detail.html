@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Senior AI Engineer | NexHire{% endblock %}
+{% block content %}
+<section class="page-header">
+    <div class="container app-container">
+        <div class="detail-header">
+            <div class="company-mark mark-blue detail-logo">{{ job.company_name|make_list|first|upper }}</div>
+            <div>
+                <span class="eyebrow">{{ job.company_name }}</span>
+                <h1>{{ job.title }}</h1>
+                <p>{{ job.location }} · {{ job.job_type }} · {{ job.salary }} · Posted {{ job.created_at|timesince }} ago</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container app-container detail-grid">
+        <article class="content-card card-glass">
+            <h2>Job description</h2>
+            <p>{{ job.description }}</p>
+            <h2>Requirements</h2>
+            <p>{{ job.skills_required }}</p>
+        </article>
+
+        <aside class="apply-panel card-glass">
+            <h2>Apply with confidence</h2>
+            <p>Your profile is a strong match for this role.</p>
+            <div class="match-track"><span></span></div>
+            {% if is_applied %}
+            <button class="btn btn-primary-glow w-100" style="background-color: #28a745; opacity: 1; cursor: default;" disabled>Applied</button>
+            {% else %}
+            <a class="btn btn-primary-glow w-100" href="{% url 'applyjob' %}?job_id={{ job.id }}">Apply now</a>
+            {% endif %}
+            <form action="{% url 'toggle_save' %}" method="post" class="mt-2">
+                {% csrf_token %}
+                <input type="hidden" name="job_id" value="{{ job.id }}">
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button class="btn btn-quiet w-100 save-job" type="submit">
+                    {% if is_saved %}
+                    <i class="fa-solid fa-bookmark"></i> Saved
+                    {% else %}
+                    <i class="fa-regular fa-bookmark"></i> Save job
+                    {% endif %}
+                </button>
+            </form>
+            <div class="company-summary mt-4">
+                <h3>Company details</h3>
+                <p>{{ job.company_name }} builds great products for fast-growing teams.</p>
+                <span><i class="fa-solid fa-building"></i> Hiring actively</span>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container app-container">
+        <div class="section-title">
+            <span class="eyebrow">Similar roles</span>
+            <h2>Recommended for you</h2>
+        </div>
+        <div class="jobs-grid" data-job-list>
+            {% for similar_job in similar_jobs %}
+                {% include "jobs/_job_cards.html" with job=similar_job %}
+            {% empty %}
+                <p>No similar roles found.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,138 @@
+@media (max-width: 1199px) {
+    .nav-search { display: none; }
+    .filter-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .company-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 991px) {
+    .app-navbar {
+        height: auto;
+        min-height: var(--nav-height);
+    }
+    .navbar-collapse {
+        margin-top: 12px;
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: var(--card-radius);
+        background: rgba(5, 8, 22, 0.96);
+        backdrop-filter: blur(18px);
+    }
+    .nav-right {
+        align-items: stretch;
+        flex-wrap: wrap;
+        margin-top: 12px;
+    }
+    .nav-right .btn {
+        flex: 1;
+    }
+    .hero {
+        min-height: auto;
+        padding-top: 120px;
+    }
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 44px;
+    }
+    .hero h1 {
+        max-width: 760px;
+    }
+    .hero-visual {
+        min-height: auto;
+    }
+    .mini-insight {
+        position: static;
+        width: auto;
+        margin-top: 16px;
+    }
+    .company-grid,
+    .jobs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .section-heading-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .page-header-grid,
+    .detail-grid,
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    .apply-panel {
+        position: static;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero {
+        padding-top: 112px;
+        padding-bottom: 64px;
+    }
+    .hero h1 {
+        font-size: clamp(2.65rem, 12vw, 4.2rem);
+    }
+    .hero-copy > p {
+        font-size: 16px;
+    }
+    .premium-search,
+    .filter-panel {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    .company-grid,
+    .jobs-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-title h2,
+    .cta-panel h2 {
+        font-size: clamp(2.1rem, 9vw, 3rem);
+    }
+    .job-card h3,
+    .content-card h2,
+    .apply-panel h2,
+    .profile-card h2,
+    .empty-state h2 {
+        font-size: 1.55rem;
+    }
+    .job-card-actions,
+    .list-toolbar,
+    .footer-bottom,
+    .cta-panel,
+    .detail-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .job-card-actions .btn,
+    .cta-actions .btn {
+        width: 100%;
+    }
+    .page-header {
+        padding-top: 112px;
+    }
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero {
+        padding-bottom: 56px;
+    }
+    .analytics-card,
+    .job-card,
+    .content-card,
+    .apply-panel,
+    .application-card,
+    .profile-card,
+    .cta-panel {
+        padding: 20px;
+    }
+    .company-card {
+        min-height: 96px;
+    }
+    .stat-card {
+        min-height: 124px;
+    }
+    .stat-card strong {
+        font-size: 2.35rem;
+    }
+}

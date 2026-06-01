@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg app-navbar fixed-top" aria-label="Primary navigation">
+    <div class="container app-container">
+        <a class="navbar-brand brand" href="{% url 'home' %}">
+            <span class="brand-badge"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+            <span>NexHire</span>
+        </a>
+
+        <button class="navbar-toggler app-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="primaryNav">
+            <ul class="navbar-nav mx-lg-auto nav-center">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'joblist' %}">Jobs</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'savedjobs' %}">Saved</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'recruiterdashboard' %}">Recruiters</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'applicationlist' %}">Applications</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <form class="nav-search" action="{% url 'joblist' %}" method="get" role="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input name="q" type="search" placeholder="Search jobs" aria-label="Search jobs">
+                </form>
+                <a class="icon-button" href="{% url 'notifications' %}" aria-label="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                </a>
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <button class="btn user-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>{{ user.username|first|upper }}</span>{{ user.username }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end app-dropdown">
+                            <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-regular fa-user"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'dashboard' %}"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out</a></li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <a class="btn btn-quiet" href="{% url 'login' %}">Login</a>
+                    <a class="btn btn-primary-glow" href="{% url 'signup' %}">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

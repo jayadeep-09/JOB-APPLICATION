@@ -1,0 +1,206 @@
+body.dashboard-page { background: var(--bg); }
+.dashboard-layout {
+    width: min(100% - 32px, var(--container));
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 24px;
+    margin: 96px auto 80px;
+}
+.dashboard-sidebar {
+    position: sticky;
+    top: 96px;
+    height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px;
+}
+.dashboard-sidebar nav {
+    display: grid;
+    gap: 8px;
+}
+.dashboard-sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: var(--radius-control);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+}
+.dashboard-sidebar nav a:hover,
+.dashboard-sidebar nav a.active {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+}
+.dashboard-main {
+    display: grid;
+    gap: 24px;
+}
+.dashboard-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+    gap: 24px;
+    align-items: end;
+}
+.dashboard-header h1 {
+    margin: 8px 0;
+    font-size: 36px;
+    line-height: 1.18;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+.dashboard-header p,
+.panel-head p { margin: 0; color: var(--muted); }
+.dashboard-search { min-height: 48px; }
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+.metric-card {
+    position: relative;
+    min-height: 140px;
+    padding: 20px;
+    overflow: hidden;
+}
+.metric-card span {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+}
+.metric-card strong {
+    display: block;
+    margin-top: 12px;
+    font-size: 36px;
+    line-height: 1;
+}
+.metric-card i {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: rgba(91, 140, 255, 0.6);
+    font-size: 24px;
+}
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.8fr);
+    gap: 24px;
+}
+.dashboard-panel {
+    padding: 24px;
+}
+.panel-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+.panel-head h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--text);
+    --bs-table-border-color: var(--border);
+    margin: 0;
+}
+.table th {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+}
+.table td {
+    color: var(--text);
+    font-size: 14px;
+}
+.status-pill {
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.status-pill.live {
+    color: #dbeafe;
+    background: rgba(91, 140, 255, 0.18);
+    border: 1px solid rgba(91, 140, 255, 0.32);
+}
+.status-pill.review {
+    color: #fef3c7;
+    background: rgba(245, 158, 11, 0.14);
+    border: 1px solid rgba(245, 158, 11, 0.28);
+}
+.icon-button.danger:hover { color: #f87171; border-color: rgba(248, 113, 113, 0.4); }
+.activity-list {
+    display: grid;
+    gap: 14px;
+}
+.activity-list div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: start;
+}
+.activity-list span {
+    width: 10px;
+    height: 10px;
+    margin-top: 8px;
+    border-radius: 999px;
+    background: var(--accent);
+}
+.activity-list p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+.applicant-table {
+    display: grid;
+    gap: 10px;
+}
+.applicant-row {
+    display: grid;
+    grid-template-columns: 1.1fr 1.2fr 120px 90px 100px auto;
+    gap: 16px;
+    align-items: center;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.035);
+    font-size: 14px;
+}
+.applicant-row.table-head {
+    color: var(--muted);
+    background: transparent;
+    border-color: transparent;
+    font-weight: 700;
+}
+@media (max-width: 1100px) {
+    .dashboard-layout { grid-template-columns: 1fr; }
+    .dashboard-sidebar {
+        position: static;
+        height: auto;
+    }
+    .dashboard-sidebar nav { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 900px) {
+    .dashboard-header,
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .dashboard-sidebar nav,
+    .metric-grid { grid-template-columns: 1fr; }
+    .panel-head,
+    .applicant-row {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+    .applicant-row.table-head { display: none; }
+}

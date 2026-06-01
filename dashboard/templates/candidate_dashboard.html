@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="page-title">
+
+    Candidate Dashboard
+
+</h1>
+
+
+<div class="dashboard-grid">
+
+
+    <div class="dashboard-card">
+
+        <h1>
+            12
+        </h1>
+
+        <p>
+            Applied Jobs
+        </p>
+
+    </div>
+
+
+
+    <div class="dashboard-card">
+
+        <h1>
+            4
+        </h1>
+
+        <p>
+            Interviews Scheduled
+        </p>
+
+    </div>
+
+
+
+    <div class="dashboard-card">
+
+        <h1>
+            2
+        </h1>
+
+        <p>
+            Offers Received
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<div class="table-card">
+
+    <h2>
+
+        Recent Applications
+
+    </h2>
+
+
+    <table>
+
+        <tr>
+
+            <th>
+                Job
+            </th>
+
+            <th>
+                Company
+            </th>
+
+            <th>
+                Status
+            </th>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Python Developer
+            </td>
+
+            <td>
+                Infosys
+            </td>
+
+            <td>
+
+                <span class="status pending">
+
+                    Pending
+
+                </span>
+
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Frontend Developer
+            </td>
+
+            <td>
+                TCS
+            </td>
+
+            <td>
+
+                <span class="status accepted">
+
+                    Accepted
+
+                </span>
+
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Data Analyst
+            </td>
+
+            <td>
+                Wipro
+            </td>
+
+            <td>
+
+                <span class="status rejected">
+
+                    Rejected
+
+                </span>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+{% endblock %}

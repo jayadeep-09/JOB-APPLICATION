@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Profile | NexHire{% endblock %}
+{% block content %}
+<section class="page-header">
+    <div class="container app-container">
+        <span class="eyebrow">Candidate profile</span>
+        <h1>Your hiring signal hub.</h1>
+        <p>Keep your skills, activity, and application status ready for recruiters.</p>
+    </div>
+</section>
+<section class="section">
+    <div class="container app-container profile-grid">
+        <aside class="profile-card card-glass">
+            <div class="profile-avatar">{{ user.username|default:"N"|first|upper }}</div>
+            <h2>{{ user.username|default:"NexHire Candidate" }}</h2>
+            <p>Full-stack Django Developer</p>
+            <a class="btn btn-primary-glow w-100" href="{% url 'editprofile' %}">Edit profile</a>
+        </aside>
+        <article class="content-card card-glass">
+            {% if edit_mode %}
+            <h2>Edit Profile</h2>
+            <form method="post" enctype="multipart/form-data" class="validated-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div style="margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary-glow">Save Changes</button>
+                    <a href="{% url 'profile' %}" class="btn">Cancel</a>
+                </div>
+            </form>
+            {% else %}
+            <h2>AI profile summary</h2>
+            <p>Strong fit for backend-heavy product teams using Django, REST APIs, Bootstrap, and data-driven workflows.</p>
+            <div class="tag-row"><span>Django</span><span>Bootstrap</span><span>Python</span><span>SQL</span><span>JavaScript</span></div>
+            <div class="profile-stats">
+                <div><strong>12</strong><span>Applied</span></div>
+                <div><strong>5</strong><span>Shortlisted</span></div>
+                <div><strong>3</strong><span>Interviews</span></div>
+            </div>
+            {% endif %}
+        </article>
+    </div>
+</section>
+{% endblock %}

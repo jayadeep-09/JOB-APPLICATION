@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block title %}NexHire | Premium AI Hiring Platform{% endblock %}
+{% block body_class %}home{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-glow hero-glow-left"></div>
+    <div class="hero-glow hero-glow-right"></div>
+    <div class="container app-container">
+        <div class="hero-grid">
+            <div class="hero-copy fade-up">
+                <span class="eyebrow"><i class="fa-solid fa-bolt"></i> AI-powered hiring network</span>
+                <h1>Find roles that match your skills, salary goals, and timing.</h1>
+                <p>NexHire combines role discovery, recruiter signals, and AI match scoring into one polished hiring workspace.</p>
+                <form class="premium-search" action="{% url 'joblist' %}" method="get" data-home-search>
+                    <div class="search-field">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <input name="q" type="search" placeholder="Role, company, or skill" aria-label="Role, company, or skill">
+                    </div>
+                    <div class="search-field">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <input name="location" type="search" placeholder="Location" aria-label="Location">
+                    </div>
+                    <button class="btn btn-primary-glow" type="submit">Search Jobs</button>
+                </form>
+                <div class="trust-row">
+                    <span><i class="fa-solid fa-circle-check"></i> Verified companies</span>
+                    <span><i class="fa-solid fa-circle-check"></i> AI match scoring</span>
+                    <span><i class="fa-solid fa-circle-check"></i> Fast recruiter signals</span>
+                </div>
+            </div>
+
+            <div class="hero-visual fade-up">
+                <article class="analytics-card card-glass floating-soft">
+                    <div class="card-kicker">Pipeline health</div>
+                    <div class="analytics-head">
+                        <h2>AI shortlist</h2>
+                        <span>Live</span>
+                    </div>
+                    <div class="chart-bars">
+                        <span class="h-48"></span>
+                        <span class="h-72"></span>
+                        <span class="h-56"></span>
+                        <span class="h-88"></span>
+                        <span class="h-64"></span>
+                    </div>
+                    <div class="candidate-list">
+                        <div><span class="signal-dot"></span><p>Senior AI Engineer</p><strong>96%</strong></div>
+                        <div><span class="signal-dot teal"></span><p>Product Designer</p><strong>91%</strong></div>
+                        <div><span class="signal-dot pink"></span><p>Growth Lead</p><strong>88%</strong></div>
+                    </div>
+                </article>
+                <article class="mini-insight card-glass">
+                    <span>Match quality</span>
+                    <strong>94%</strong>
+                </article>
+                <article class="mini-insight secondary card-glass">
+                    <span>Avg. response</span>
+                    <strong>18h</strong>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container app-container">
+        <div class="section-title fade-up">
+            <span class="eyebrow">Featured companies</span>
+            <h2>Teams hiring through NexHire</h2>
+        </div>
+        <div class="company-grid fade-up">
+            <article class="company-card">
+                <span class="company-mark mark-blue">A</span>
+                <div><strong>Atlas Cloud</strong><p>AI operations</p></div>
+            </article>
+            <article class="company-card">
+                <span class="company-mark mark-green">N</span>
+                <div><strong>NovaStack</strong><p>Growth systems</p></div>
+            </article>
+            <article class="company-card">
+                <span class="company-mark mark-pink">P</span>
+                <div><strong>PixelForge</strong><p>Product design</p></div>
+            </article>
+            <article class="company-card">
+                <span class="company-mark mark-violet">S</span>
+                <div><strong>ShieldGrid</strong><p>Security cloud</p></div>
+            </article>
+            <article class="company-card">
+                <span class="company-mark mark-amber">C</span>
+                <div><strong>CloudMint</strong><p>Django platform</p></div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container app-container">
+        <div class="section-heading-row fade-up">
+            <div class="section-title">
+                <span class="eyebrow">Latest roles</span>
+                <h2>High-signal jobs, ready to apply</h2>
+            </div>
+            <a class="btn btn-quiet" href="{% url 'joblist' %}">View all jobs</a>
+        </div>
+        <div class="jobs-grid" data-job-list>
+            {% for job in jobs %}
+                {% include "jobs/_job_cards.html" with job=job %}
+            {% empty %}
+                <p>No jobs found.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container app-container">
+        <div class="row g-4 stats-row fade-up">
+            <div class="col-6 col-md-3">
+                <article class="stat-card card-glass"><strong data-counter="12000">0</strong><span>Open roles</span></article>
+            </div>
+            <div class="col-6 col-md-3">
+                <article class="stat-card card-glass"><strong data-counter="840">0</strong><span>Hiring teams</span></article>
+            </div>
+            <div class="col-6 col-md-3">
+                <article class="stat-card card-glass"><strong data-counter="94">0</strong><span>Match accuracy</span></article>
+            </div>
+            <div class="col-6 col-md-3">
+                <article class="stat-card card-glass"><strong data-counter="48">0</strong><span>Hour shortlist</span></article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container app-container">
+        <div class="cta-panel card-glass fade-up">
+            <div>
+                <span class="eyebrow">Start now</span>
+                <h2>Build a sharper job search workflow.</h2>
+                <p>Save roles, compare matches, and apply with a clean candidate profile.</p>
+            </div>
+            <div class="cta-actions">
+                <a class="btn btn-primary-glow" href="{% url 'signup' %}">Create Account</a>
+                <a class="btn btn-quiet" href="{% url 'joblist' %}">Browse Jobs</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

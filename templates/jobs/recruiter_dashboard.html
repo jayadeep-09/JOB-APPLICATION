@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Recruiter Dashboard | NexHire{% endblock %}
+{% block body_class %}dashboard-page{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">{% endblock %}
+{% block content %}
+<section class="dashboard-layout">
+    <aside class="dashboard-sidebar card-glass">
+        <a class="brand" href="{% url 'home' %}">
+            <span class="brand-badge"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+            NexHire
+        </a>
+        <nav>
+            <a class="active" href="#overview"><i class="fa-solid fa-table-columns"></i> Overview</a>
+            <a href="#jobs"><i class="fa-solid fa-briefcase"></i> Jobs</a>
+            <a href="#applicants"><i class="fa-solid fa-users"></i> Applicants</a>
+            <a href="#activity"><i class="fa-regular fa-bell"></i> Activity</a>
+        </nav>
+        <a class="btn btn-primary-glow w-100" href="{% url 'createjob' %}">Post job</a>
+    </aside>
+
+    <div class="dashboard-main">
+        <header class="dashboard-header">
+            <div>
+                <span class="eyebrow">Recruiter dashboard</span>
+                <h1>Hiring command center</h1>
+                <p>Monitor open roles, applicants, and recent hiring activity.</p>
+            </div>
+            <div class="field-shell dashboard-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" data-applicant-search placeholder="Search applicants">
+            </div>
+        </header>
+
+        <section class="metric-grid" id="overview">
+            <div class="metric-card card-glass"><span>Open jobs</span><strong>{{ active_jobs }}</strong><i class="fa-solid fa-briefcase"></i></div>
+            <div class="metric-card card-glass"><span>Total Applicants</span><strong>{{ total_applications }}</strong><i class="fa-solid fa-users"></i></div>
+            <div class="metric-card card-glass"><span>Pending Reviews</span><strong>{{ pending_applications }}</strong><i class="fa-solid fa-clock"></i></div>
+            <div class="metric-card card-glass"><span>Profile Views</span><strong>--</strong><i class="fa-solid fa-eye"></i></div>
+        </section>
+
+        <div class="dashboard-grid">
+            <section class="dashboard-panel card-glass" id="jobs">
+                <div class="panel-head">
+                    <div>
+                        <h2>Posted jobs</h2>
+                        <p>Manage live hiring campaigns.</p>
+                    </div>
+                    <a class="btn btn-quiet" href="{% url 'createjob' %}">Add Job</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr><th>Role</th><th>Status</th><th>Applicants</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for job in jobs %}
+                            <tr>
+                                <td>{{ job.title }}</td>
+                                <td><span class="status-pill live">Live</span></td>
+                                <td>{{ job.application_set.count }}</td>
+                                <td>
+                                    <a class="icon-button" href="{% url 'editjob' job.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <form method="post" action="{% url 'deletejob' job.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button class="icon-button danger" type="submit" onclick="return confirm('Delete this job?');"><i class="fa-regular fa-trash-can"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="4">No jobs posted yet.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <aside class="dashboard-panel card-glass" id="activity">
+                <div class="panel-head">
+                    <div>
+                        <h2>Recent activity</h2>
+                        <p>Latest pipeline updates.</p>
+                    </div>
+                </div>
+                <div class="activity-list">
+                    {% for app in applications|slice:":5" %}
+                    <div><span></span><p>New application for {{ app.job.title }} from {{ app.candidate.username }}.</p></div>
+                    {% empty %}
+                    <div><span></span><p>No recent activity.</p></div>
+                    {% endfor %}
+                </div>
+            </aside>
+        </div>
+
+        <section class="dashboard-panel card-glass" id="applicants">
+            <div class="panel-head">
+                <div>
+                    <h2>Applicants</h2>
+                    <p>Search and review candidate profiles.</p>
+                </div>
+            </div>
+            <div class="applicant-table">
+                <div class="applicant-row table-head"><span>Name</span><span>Role</span><span>Resume</span><span>Status</span><span>Applied</span><span></span></div>
+                {% for app in applications %}
+                <div class="applicant-row" data-applicant="{{ app.candidate.username }} {{ app.job.title }}">
+                    <span>{{ app.candidate.username }}</span>
+                    <span>{{ app.job.title }}</span>
+                    <span>
+                        {% if app.resume %}
+                        <a href="{{ app.resume.url }}" target="_blank" rel="noopener">View resume</a>
+                        {% else %}
+                        Not uploaded
+                        {% endif %}
+                    </span>
+                    <span>{{ app.status }}</span>
+                    <span>{{ app.applied_at|date:"d M Y" }}</span>
+                    <a class="btn btn-quiet" href="{% url 'applicationlist' %}">Review</a>
+                </div>
+                {% empty %}
+                <div class="applicant-row"><span>No applicants yet.</span><span></span><span></span><span></span><span></span><span></span></div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</section>
+
+
+{% endblock %}

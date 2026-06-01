@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Apply | NexHire{% endblock %}
+{% block content %}
+<section class="page-header">
+    <div class="container app-container">
+        <span class="eyebrow">Application</span>
+        <h1>Apply for {{ job.title }}</h1>
+        <p>Upload your resume and add a concise cover letter for the recruiter.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container app-container narrow">
+        <form class="application-card card-glass validated-form" method="post" action="{% url 'applyjob' %}?job_id={{ job.id }}" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="job_id" value="{{ job.id }}">
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            {{ field.label }}: {{ error }}
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <label class="dropzone" for="resumeUpload" data-dropzone>
+                <input id="resumeUpload" name="resume" type="file" accept=".pdf,.doc,.docx" required>
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <strong>Drop your resume here or browse</strong>
+                <span>PDF, DOC, or DOCX up to 5MB</span>
+            </label>
+            <label for="coverLetter">Cover letter</label>
+            <textarea id="coverLetter" name="cover_letter" placeholder="Tell the recruiter why this role fits your experience." required minlength="40"></textarea>
+            <button class="btn btn-primary-glow w-100" type="submit">Submit application</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{% if edit_mode %}Edit Job{% else %}Post a Job{% endif %} | NexHire{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/auth.css' %}">{% endblock %}
+{% block content %}
+<section class="auth-section" style="padding: 4rem 1rem;">
+    <div class="auth-card card-glass fade-up" style="max-width: 600px;">
+        <span class="eyebrow">Recruiter</span>
+        <h1>{% if edit_mode %}Edit Job{% else %}Post a New Job{% endif %}</h1>
+        <p>Fill out the details below to find the best candidates.</p>
+        <form method="post" class="validated-form mt-4" novalidate>
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <div class="alert alert-danger">Please correct the errors below.</div>
+            {% endif %}
+
+            <label for="{{ form.title.id_for_label }}">Job Title</label>
+            <div class="field-shell">
+                <i class="fa-solid fa-briefcase"></i>
+                <input type="text" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" value="{{ form.title.value|default:'' }}" required placeholder="e.g. Senior Software Engineer">
+            </div>
+
+            <label for="{{ form.company_name.id_for_label }}">Company Name</label>
+            <div class="field-shell">
+                <i class="fa-solid fa-building"></i>
+                <input type="text" name="{{ form.company_name.name }}" id="{{ form.company_name.id_for_label }}" value="{{ form.company_name.value|default:'' }}" required placeholder="e.g. Google">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="{{ form.location.id_for_label }}">Location</label>
+                    <div class="field-shell">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <input type="text" name="{{ form.location.name }}" id="{{ form.location.id_for_label }}" value="{{ form.location.value|default:'' }}" required placeholder="e.g. San Francisco, CA">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="{{ form.salary.id_for_label }}">Salary</label>
+                    <div class="field-shell">
+                        <i class="fa-solid fa-money-bill"></i>
+                        <input type="text" name="{{ form.salary.name }}" id="{{ form.salary.id_for_label }}" value="{{ form.salary.value|default:'' }}" required placeholder="e.g. $120,000">
+                    </div>
+                </div>
+            </div>
+
+            <label for="{{ form.job_type.id_for_label }}">Job Type</label>
+            <div class="field-shell" style="padding-left: 1rem;">
+                <select name="{{ form.job_type.name }}" id="{{ form.job_type.id_for_label }}" required style="background: transparent; border: none; color: white; width: 100%; outline: none;">
+                    {% for choice in form.job_type.field.choices %}
+                        <option style="color: black;" value="{{ choice.0 }}" {% if form.job_type.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <label for="{{ form.skills_required.id_for_label }}">Skills Required</label>
+            <div class="field-shell" style="height: auto; padding: 1rem;">
+                <textarea name="{{ form.skills_required.name }}" id="{{ form.skills_required.id_for_label }}" required placeholder="e.g. Python, Django, React" rows="3" style="background: transparent; border: none; color: white; width: 100%; outline: none; resize: vertical;">{{ form.skills_required.value|default:'' }}</textarea>
+            </div>
+
+            <label for="{{ form.description.id_for_label }}">Job Description</label>
+            <div class="field-shell" style="height: auto; padding: 1rem;">
+                <textarea name="{{ form.description.name }}" id="{{ form.description.id_for_label }}" required placeholder="Detail the responsibilities and requirements..." rows="6" style="background: transparent; border: none; color: white; width: 100%; outline: none; resize: vertical;">{{ form.description.value|default:'' }}</textarea>
+            </div>
+
+            <div class="d-flex gap-3 mt-4">
+                <button type="submit" class="btn btn-primary-glow flex-grow-1">{% if edit_mode %}Save Changes{% else %}Post Job{% endif %}</button>
+                <a href="{% url 'recruiterdashboard' %}" class="btn btn-quiet">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

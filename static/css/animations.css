@@ -1,0 +1,29 @@
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes slowFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+}
+@keyframes shimmer {
+    0% { background-position: -240px 0; }
+    100% { background-position: 240px 0; }
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.floaty { animation: slowFloat 5.5s ease-in-out infinite; }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 520ms ease, transform 520ms ease; }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.btn-loading.loading { pointer-events: none; opacity: .8; }
+.btn-loading.loading::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    border: 2px solid rgba(4,16,25,0.35);
+    border-top-color: #041019;
+    border-radius: 50%;
+    vertical-align: -2px;
+    animation: spin 700ms linear infinite;
+}

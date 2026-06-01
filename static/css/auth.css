@@ -1,0 +1,132 @@
+.auth-section {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 120px 16px 80px;
+}
+.auth-card {
+    width: min(100%, 480px);
+    padding: 32px;
+}
+.auth-card-wide { width: min(100%, 680px); }
+.auth-card h1 {
+    margin: 8px 0;
+    font-size: 36px;
+    line-height: 1.18;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+.auth-card p,
+.switch-link,
+.strength-text { color: var(--muted); }
+.validated-form {
+    display: grid;
+    gap: 14px;
+    margin-top: 24px;
+}
+.validated-form label {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+}
+.password-shell { padding-right: 8px; }
+.password-toggle {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 auto;
+    border: 0;
+    color: var(--muted);
+    background: transparent;
+}
+.password-toggle:hover { color: var(--text); }
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    color: var(--muted);
+    font-size: 14px;
+}
+.check-label {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--muted) !important;
+    font-weight: 500 !important;
+}
+.social-grid,
+.form-grid,
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+.social-grid { margin-top: 16px; }
+.social-grid button {
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 14px;
+    font-weight: 700;
+}
+.switch-link { margin: 18px 0 0; text-align: center; font-size: 14px; }
+.role-grid input { position: absolute; opacity: 0; }
+.role-grid span {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+}
+.role-grid input:checked + span {
+    color: var(--text);
+    border-color: rgba(91, 140, 255, 0.56);
+    box-shadow: 0 0 0 4px rgba(91, 140, 255, 0.12);
+}
+.strength-meter {
+    height: 8px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+}
+.strength-meter span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: #ef4444;
+    transition: width var(--transition), background var(--transition);
+}
+.strength-meter.medium span { width: 60%; background: #f59e0b; }
+.strength-meter.strong span { width: 100%; background: #22c55e; }
+.otp-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+.otp-row input {
+    height: 56px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    color: var(--text);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 24px;
+    font-weight: 800;
+}
+.validated-form.was-validated input:invalid {
+    border-color: #ef4444;
+}
+@media (max-width: 575px) {
+    .auth-card { padding: 24px; }
+    .form-grid,
+    .role-grid,
+    .social-grid { grid-template-columns: 1fr; }
+    .form-row { align-items: flex-start; flex-direction: column; }
+}

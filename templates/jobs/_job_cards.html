@@ -1,0 +1,33 @@
+<article class="job-card card-glass fade-up" data-title="{{ job.title }}" data-company="{{ job.company_name }}" data-location="{{ job.location }}" data-salary="{{ job.salary }}" data-type="{{ job.job_type }}">
+    <div class="job-card-head">
+        <div class="company-mark mark-blue">{{ job.company_name|make_list|first|upper }}</div>
+        <form action="{% url 'toggle_save' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="job_id" value="{{ job.id }}">
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button class="save-job" type="submit" aria-label="Save job">
+                <i class="fa-regular fa-bookmark"></i>
+            </button>
+        </form>
+    </div>
+    <div class="job-card-body">
+        <span class="company-name">{{ job.company_name }}</span>
+        <h3>{{ job.title }}</h3>
+        <p><i class="fa-solid fa-location-dot"></i> {{ job.location }} · {{ job.job_type }}</p>
+        <p><i class="fa-solid fa-wallet"></i> {{ job.salary }}</p>
+        <div class="tag-row">
+            {% for skill in job.skills_required.split %}
+                <span>{{ skill }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="job-card-actions">
+        {% if job.id in applied_job_ids or is_applied %}
+        <button class="btn btn-primary-glow" style="background-color: #28a745; opacity: 1; cursor: default;" disabled>Applied</button>
+        {% else %}
+        <a class="btn btn-primary-glow" href="{% url 'applyjob' %}?job_id={{ job.id }}">Apply</a>
+        {% endif %}
+        <a class="btn btn-quiet" href="{% url 'jobdetails' %}?id={{ job.id }}">Details</a>
+    </div>
+</article>
+

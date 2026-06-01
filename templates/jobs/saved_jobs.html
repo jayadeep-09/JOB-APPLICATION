@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Saved Jobs | NexHire{% endblock %}
+{% block content %}
+<section class="page-header">
+    <div class="container app-container">
+        <span class="eyebrow">Saved roles</span>
+        <h1>Your curated shortlist.</h1>
+        <p>Keep promising jobs close while you compare fit, salary, and timing.</p>
+    </div>
+</section>
+<section class="section">
+    <div class="container app-container">
+        <div class="jobs-grid" data-job-list>
+            {% for saved_job in saved_jobs %}
+                {% include "jobs/_job_cards.html" with job=saved_job.job %}
+            {% empty %}
+                <p>No saved jobs.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

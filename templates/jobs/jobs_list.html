@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Jobs | NexHire{% endblock %}
+{% block content %}
+<section class="page-header">
+    <div class="container app-container">
+        <div class="page-header-grid">
+            <div>
+                <span class="eyebrow">Search jobs</span>
+                <h1>Find a role that fits your next move.</h1>
+                <p>Filter by role, company, location, skills, salary, and job type with instant results.</p>
+            </div>
+            <div class="header-metric card-glass">
+                <strong data-result-count>{{ jobs|length }}</strong>
+                <span>matching roles</span>
+            </div>
+        </div>
+
+        <form class="filter-panel card-glass" data-filter-form>
+            <div class="field-shell">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" name="q" value="{{ request.GET.q }}" placeholder="Title, company, skill">
+            </div>
+            <div class="field-shell">
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="search" name="location" value="{{ request.GET.location }}" placeholder="Location">
+            </div>
+            <select name="category" aria-label="Category">
+                <option value="">All categories</option>
+                <option value="engineering">Engineering</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                <option value="security">Security</option>
+            </select>
+            <select name="type" aria-label="Job type">
+                <option value="">Any type</option>
+                <option value="remote">Remote</option>
+                <option value="full time">Full Time</option>
+                <option value="internship">Internship</option>
+                <option value="hybrid">Hybrid</option>
+            </select>
+            <select name="salary" aria-label="Salary">
+                <option value="">Any salary</option>
+                <option value="50000">$50k+</option>
+                <option value="100000">$100k+</option>
+                <option value="150000">$150k+</option>
+            </select>
+            <button class="btn btn-primary-glow" type="submit">Search</button>
+        </form>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container app-container">
+        <div class="list-toolbar">
+            <p><span data-result-count>{{ jobs|length }}</span> roles available</p>
+            <button class="btn btn-quiet" type="button" data-clear-filters><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+        <div class="jobs-grid" data-job-list>
+            {% for job in jobs %}
+                {% include "jobs/_job_cards.html" with job=job %}
+            {% empty %}
+                <p>No jobs found.</p>
+            {% endfor %}
+        </div>
+        <div class="empty-state card-glass d-none" data-empty-state>
+            <i class="fa-regular fa-folder-open"></i>
+            <h2>No matching jobs</h2>
+            <p>Try a broader title, location, salary, or skill search.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

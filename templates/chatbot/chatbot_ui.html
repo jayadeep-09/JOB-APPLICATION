@@ -1,0 +1,44 @@
+<!-- Chatbot Floating Button -->
+<div id="ai-chatbot-btn" class="ai-chatbot-btn">
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+</div>
+
+<!-- Chatbot Window -->
+<div id="ai-chatbot-window" class="ai-chatbot-window d-none">
+    <div class="chat-header">
+        <div class="d-flex align-items-center">
+            <div class="bot-avatar"><i class="fa-solid fa-robot"></i></div>
+            <div class="ms-2">
+                <strong>NexHire AI</strong>
+                <span class="status-dot"></span><small class="ms-1">Online</small>
+            </div>
+        </div>
+        <button id="close-chatbot" class="btn-close-chat"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div id="chat-messages" class="chat-messages">
+        <!-- Messages will be injected here -->
+        <div class="message bot-message">
+            <p>Hi! I'm your AI career assistant. Upload your resume (PDF/DOCX) so I can analyze it and suggest the best roles for you!</p>
+        </div>
+    </div>
+    
+    <div class="chat-input-area">
+        <form id="chat-form">
+            <div class="upload-zone" id="upload-zone">
+                <input type="file" id="resume-file" accept=".pdf,.docx" hidden>
+                <div class="drop-text" id="drop-text">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Drop resume or click to upload
+                </div>
+                <div class="uploading-spinner d-none" id="uploading-spinner">
+                    <div class="spinner-border spinner-border-sm text-primary" role="status"></div> Analyzing...
+                </div>
+            </div>
+            
+            <div class="input-group mt-2">
+                <input type="text" id="chat-input" class="form-control" placeholder="Ask about your resume..." autocomplete="off">
+                <button type="submit" class="btn btn-primary btn-send"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </form>
+    </div>
+</div>

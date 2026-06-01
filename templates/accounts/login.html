@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login | NexHire{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/auth.css' %}">{% endblock %}
+{% block content %}
+<section class="auth-section">
+    <div class="auth-card card-glass fade-up">
+        <span class="eyebrow">Welcome back</span>
+        <h1>Login to NexHire</h1>
+        <p>Continue your job search, saved roles, and recruiter conversations.</p>
+        <form class="validated-form" method="post" action="{% url 'login' %}" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            <label for="loginEmail">Email</label>
+            <div class="field-shell">
+                <i class="fa-regular fa-envelope"></i>
+                <input id="loginEmail" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <label for="loginPassword">Password</label>
+            <div class="field-shell password-shell">
+                <i class="fa-solid fa-lock"></i>
+                <input id="loginPassword" name="password" type="password" placeholder="Enter password" required minlength="6">
+                <button class="password-toggle" type="button" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+            </div>
+            <div class="form-row">
+                <label class="check-label"><input type="checkbox" name="remember"> Remember me</label>
+                <a href="{% url 'forgotpassword' %}">Forgot password?</a>
+            </div>
+            <button class="btn btn-primary-glow w-100" type="submit">Login</button>
+        </form>
+
+        <p class="switch-link">New to NexHire? <a href="{% url 'signup' %}">Create account</a></p>
+    </div>
+</section>
+{% endblock %}

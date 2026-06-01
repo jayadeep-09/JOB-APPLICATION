@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Recruiter Dashboard
+</h2>
+
+<div class="row">
+
+    <!-- TOTAL JOBS -->
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card dashboard-card">
+
+            <h3>
+                18
+            </h3>
+
+            <p class="dashboard-text">
+                Active Jobs
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- TOTAL APPLICATIONS -->
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card dashboard-card">
+
+            <h3>
+                124
+            </h3>
+
+            <p class="dashboard-text">
+                Applications Received
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- INTERVIEWS -->
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card dashboard-card">
+
+            <h3>
+                9
+            </h3>
+
+            <p class="dashboard-text">
+                Interviews Scheduled
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- RECENT APPLICATIONS -->
+
+<div class="card p-4 mt-4">
+
+    <h3 class="mb-4">
+        Recent Applicants
+    </h3>
+
+    <table class="table">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Candidate
+                </th>
+
+                <th>
+                    Role
+                </th>
+
+                <th>
+                    Experience
+                </th>
+
+                <th>
+                    Status
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>
+                    Rahul Sharma
+                </td>
+
+                <td>
+                    Python Developer
+                </td>
+
+                <td>
+                    2 Years
+                </td>
+
+                <td>
+
+                    <span class="badge bg-warning text-dark">
+                        Pending
+                    </span>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+                    Priya Reddy
+                </td>
+
+                <td>
+                    UI/UX Designer
+                </td>
+
+                <td>
+                    3 Years
+                </td>
+
+                <td>
+
+                    <span class="badge bg-success">
+                        Shortlisted
+                    </span>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+                    Arjun Kumar
+                </td>
+
+                <td>
+                    Data Analyst
+                </td>
+
+                <td>
+                    1 Year
+                </td>
+
+                <td>
+
+                    <span class="badge bg-danger">
+                        Rejected
+                    </span>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+                    Sneha Patel
+                </td>
+
+                <td>
+                    Frontend Developer
+                </td>
+
+                <td>
+                    4 Years
+                </td>
+
+                <td>
+
+                    <span class="badge bg-primary">
+                        Interview
+                    </span>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- JOB PERFORMANCE -->
+
+<div class="row mt-4">
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card p-4">
+
+            <h4 class="mb-3">
+                Top Hiring Role
+            </h4>
+
+            <h3>
+                Full Stack Developer
+            </h3>
+
+            <p class="dashboard-text">
+                42 Applications Received
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card p-4">
+
+            <h4 class="mb-3">
+                Hiring Success Rate
+            </h4>
+
+            <h3>
+                78%
+            </h3>
+
+            <p class="dashboard-text">
+                Candidate Acceptance Rate
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

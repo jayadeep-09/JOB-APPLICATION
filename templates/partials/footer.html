@@ -1,0 +1,43 @@
+<footer class="app-footer">
+    <div class="container app-container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <a class="brand footer-brand" href="{% url 'home' %}">
+                    <span class="brand-badge"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                    <span>NexHire</span>
+                </a>
+                <p class="text-muted-custom mt-3 mb-0">A premium AI recruiting workspace for better matches, cleaner hiring pipelines, and faster decisions.</p>
+            </div>
+            <div class="col-sm-4 col-lg-2">
+                <h2>Platform</h2>
+                <a href="{% url 'joblist' %}">Browse jobs</a>
+                <a href="{% url 'savedjobs' %}">Saved jobs</a>
+                <a href="{% url 'applyjob' %}">Apply</a>
+            </div>
+            <div class="col-sm-4 col-lg-2">
+                <h2>Recruiters</h2>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'createjob' %}">Post job</a>
+                <a href="{% url 'applicationlist' %}">Applicants</a>
+            </div>
+            <div class="col-sm-4 col-lg-2">
+                <h2>Company</h2>
+                <a href="mailto:hello@nexhire.ai">Contact</a>
+                <a href="{% url 'notifications' %}">Notifications</a>
+                <a href="{% url 'profile' %}">Profile</a>
+            </div>
+            <div class="col-lg-2">
+                <h2>Social</h2>
+                <div class="social-row">
+                    <a href="https://www.linkedin.com" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://x.com" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://github.com" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 NexHire AI. All rights reserved.</span>
+            <span>Privacy | Terms | Accessibility</span>
+        </div>
+    </div>
+</footer>

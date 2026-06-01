@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Candidate Dashboard | NexHire{% endblock %}
+{% block body_class %}dashboard-page{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">{% endblock %}
+{% block content %}
+<section class="dashboard-layout">
+    <aside class="dashboard-sidebar card-glass">
+        <a class="brand" href="{% url 'home' %}">
+            <span class="brand-badge"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+            NexHire
+        </a>
+        <nav>
+            <a class="active" href="#overview"><i class="fa-solid fa-table-columns"></i> Overview</a>
+            <a href="{% url 'applicationlist' %}"><i class="fa-solid fa-briefcase"></i> My Applications</a>
+            <a href="{% url 'savedjobs' %}"><i class="fa-solid fa-bookmark"></i> Saved Jobs</a>
+            <a href="{% url 'notifications' %}"><i class="fa-regular fa-bell"></i> Notifications</a>
+        </nav>
+        <a class="btn btn-primary-glow w-100" href="{% url 'joblist' %}">Find Jobs</a>
+    </aside>
+
+    <div class="dashboard-main">
+        <header class="dashboard-header">
+            <div>
+                <span class="eyebrow">Candidate dashboard</span>
+                <h1>Welcome back, {{ user.first_name|default:user.username }}</h1>
+                <p>Track your job search progress and explore new roles.</p>
+            </div>
+        </header>
+
+        <section class="metric-grid" id="overview">
+            <div class="metric-card card-glass"><span>Jobs Applied</span><strong>{{ jobs_applied }}</strong><i class="fa-solid fa-paper-plane"></i></div>
+            <div class="metric-card card-glass"><span>Saved Jobs</span><strong>{{ saved_jobs }}</strong><i class="fa-solid fa-bookmark"></i></div>
+            <div class="metric-card card-glass"><span>Pending Reviews</span><strong>{{ pending_applications }}</strong><i class="fa-solid fa-clock"></i></div>
+        </section>
+
+        <div class="dashboard-grid mt-4">
+            <section class="dashboard-panel card-glass" id="jobs">
+                <div class="panel-head">
+                    <div>
+                        <h2>Quick Actions</h2>
+                        <p>Continue your job search journey.</p>
+                    </div>
+                </div>
+                <div class="p-3">
+                    <a href="{% url 'joblist' %}" class="btn btn-primary-glow mb-2">Browse New Jobs</a><br>
+                    <a href="{% url 'applicationlist' %}" class="btn btn-quiet">View Applications Status</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{% endblock %}
