@@ -6,7 +6,7 @@ COPY . .
 
 RUN pip install  -r requirements.txt
 
-RUN python manage.py collecctstatic --noinput
+RUN python manage.py collectstatic --noinput
 
 EXPOSE 10000
 
